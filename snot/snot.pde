@@ -4,7 +4,7 @@ int dir = 0;
 float cnt = 0;
 
 void setup() {
-  size(200, 200);
+  size(600, 600);
   background(0);
   buff = createImage(width, height, RGB);
   for(int i = 0; i<width*height; i++){
@@ -38,9 +38,9 @@ void draw() {
     dir = 0;
   }
   buff.resize(int(width*exp), int(height*exp));
-  translate(width/2, 0);
-  rotate(cos(cnt)+1);
-  cnt+=0.1;
+  translate(width/2, height/2);
+  rotate(cnt);
+  cnt += constrain(map(mouseX, 0, width, 0.01, 0.1), 0.01, 0.1);
   image(buff, 0, 0);
   delay(30);
 }
