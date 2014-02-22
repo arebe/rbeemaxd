@@ -4,7 +4,7 @@ int dir = 0;
 float cnt = 0;
 
 void setup() {
-  size(600, 600);
+  size(600, 600,P3D);
   background(0);
   buff = createImage(width, height, RGB);
   for(int i = 0; i<width*height; i++){
@@ -23,19 +23,13 @@ void draw() {
     buff.pixels[i]=color((constrain(int(random(21)),18,20)-18)*255);
   }
   buff.updatePixels();
+  
+  //only increases and returns to zero, no going smaller...
   if(exp < 1.1 && dir == 0){
     exp += 0.01;
   }
   else if(exp >= 1.1){
-    exp -= 0.01;
-    dir = 1;
-  }
-  else if(exp > 0.1 && dir == 1) {
-    exp -= 0.01;
-  }
-  else if(exp <=0.11){
-    exp += 0.01;
-    dir = 0;
+    exp = 0.01;    
   }
   buff.resize(int(width*exp), int(height*exp));
   translate(width/2, height/2);
