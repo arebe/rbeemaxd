@@ -18,6 +18,8 @@ void setup() {
   }
 }
 
+//space tooth paste
+
 void draw() {
   pushMatrix();
   pg.beginDraw();
@@ -32,7 +34,8 @@ void draw() {
 
   if (exp < 1.1 && dir == 0) exp += 0.001;
   else if (exp >= 1.1)exp = 0.01;
-  cnt += map(mouseX, 0, width, 0.01, 0.1);
+  cnt += map(mouseX, 0, width, 0.005, 0.1);
+  
   buff.resize(int(width*exp), int(height*exp));
   pg.translate(width/2, height/2);
   pg.rotate(cnt);
@@ -42,12 +45,11 @@ void draw() {
   pg.endDraw();
   popMatrix();
 
-
   translate(width/2, height/2);
   rotate(-cnt);
   imageMode(CENTER);
   image(pg, 0, 0);
 
-  delay(30);
+  delay(10);
 }
 
