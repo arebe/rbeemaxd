@@ -13,9 +13,10 @@ PFont font;
 /* setup */
 void setup(){
   size(3*dimFactor, 4*dimFactor);
-  background(255,255,255);
+  colorMode(HSB, 360, 100, 100);
+  background(0,0,100);
   font = loadFont("Skia-Regular_Light-Condensed-48.vlw");
-  textFont(font, 18);
+  textFont(font, 14);
   words = new ArrayList<Words>();
   words.add(new Words("Let us admit that we have attended parties where for one brief night a republic of gratified desires was attained. Shall we not confess that the politics of that night have more reality and force for us than those of, say, the entire U.S. Government? Some of the 'parties' we've mentioned lasted for two or three years. Is this something worth imagining, worth fighting for? Let us study invisibility, webworking, psychic nomadism--and who knows what we might attain? —Hakim Bey TAZ"));
   words.add(new Words("Anyone who can read history with both hemispheres of the brain knows that a world comes to an end every instant--the waves of time leave washed up behind themselves only dry memories of a closed & petrified past--imperfect memory, itself already dying & autumnal. And every instant also gives birth to a world--despite the cavillings of philosophers & scientists whose bodies have grown numb--a present in which all impossibilities are renewed, where regret & premonition fade to nothing in one presential hologrammatical psychomantric gesture.  — Hakim Bey TAZ"));
@@ -26,12 +27,12 @@ void setup(){
 
 /* draw loop */
 void draw(){
-  fill(255, 255, 255, 255);
+  fill(0, 0, 100);
   strokeWeight(0);
   rect(0, 0, width, height);
-  
+  // static buttons
   for(int i = 0; i < words.size(); i++){
-    fill(80, 80, 80, 10);
+    fill(0, 0, 100);
     strokeWeight(5);
     int x = (width/words.size())*i;
     int y =  5;
@@ -42,6 +43,20 @@ void draw(){
       words.get(i).displayQuote();
     }    
   }
+  // spiral buttons
+  for(int i = 0; i < words.size(); i++){
+    fill(0, 0, 100);
+    strokeWeight(5);
+    int x = (width/words.size())*i;
+    int y =  height-20;
+    int w = width/words.size();
+    int h = 15;
+    rect(x, y, w, h);
+    if(overRect(x, y, w, h)){
+      words.get(i).spiralQuote();
+    }    
+  }
+  
   
   
 }

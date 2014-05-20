@@ -3,6 +3,7 @@
 
 class Words{
   String quote;
+  color wColor = color(0, 0, 0);
   
   Words(String q){
     quote = q;    
@@ -22,6 +23,14 @@ class Words{
     
   }
   
+  void spiralQuote(){
+    ArrayList<PhiSpiral> spirals = new ArrayList<PhiSpiral>();
+    for(int i = 0; i < 8; i++){
+      // spiral params: a, theta incr, # turns, line/dot
+      spirals.add(new PhiSpiral(i*3, 10, 5, "letters"));
+      spirals.get(i).display(wColor, quote);
+    }
+  }
+  
   /* other useful things to do with words */
 }
-
