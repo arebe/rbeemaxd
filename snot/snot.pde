@@ -34,9 +34,11 @@ void draw() {
 
   if (exp < 1.1 && dir == 0) exp += 0.001;
   else if (exp >= 1.1)exp = 0.01;
-  cnt += map(mouseX, 0, width, 0.005, 0.1);
+  cnt += 0.02;//map(mouseX, 0, width, 0.005, 0.1);
   
   buff.resize(int(width*exp), int(height*exp));
+  pg.fill(0,0,0,3);
+  pg.rect(0,0,width,height);
   pg.translate(width/2, height/2);
   pg.rotate(cnt);
   imageMode(CORNER);

@@ -37,7 +37,7 @@ class PhiSpiral{
     float[] coord = new float[2];
     float[] oldCoord = new float[2];
     float r;
-    int windex = 0;
+    int windex = 0; // megusta
     for(float theta = 0; theta < nTurns*360; theta += thetaIncr){
       r = a * pow(c, theta);
       oldCoord = coord;
@@ -55,10 +55,14 @@ class PhiSpiral{
         point(coord[0], coord[1]);
       }
       if(letters){
+        //seperate words by color, helps me read but confusing when constantly drawing.
+        if(words.charAt(windex)==' ')lineColor = randomColor();
         fill(lineColor);
         strokeWeight(3);
-        text(words.charAt(windex), coord[0], coord[1]);
-        if(windex < words.length()-1){
+        translate(coord[0], coord[1]);
+        rotate(angleCalc(coord[0], coord[1], oldCoord[0], oldCoord[1])); // was just radians(theta+90));  
+        scale(1+zeroDist(coord[0], coord[1])*8);
+        text(words.charAt(windex), 0, 0);        if(windex < words.length()-1){
           windex++;
         }
         else{
@@ -69,6 +73,10 @@ class PhiSpiral{
     }
   }
     
+  float zeroDist(float x, float y){
+    return pow(sqrt(x*x+y*y)/(height/2),2);
+  }
+  //whut ? i had no idea about returning multidimentional arrays! 
   float[] polarToCartesian(float r, float a){
     float x = r * cos(radians(a));
     float y = r * sin(radians(a));
